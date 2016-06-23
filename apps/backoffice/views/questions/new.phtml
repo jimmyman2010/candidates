@@ -1,0 +1,61 @@
+<?php
+/**
+ * @var \Phalcon\Mvc\View\Engine\Php $this
+ */
+?>
+
+<div class="row">
+    <nav>
+        <ul class="pager">
+            <li class="previous"><?php echo $this->tag->linkTo(array("questions", "Go Back")) ?></li>
+        </ul>
+    </nav>
+</div>
+
+<div class="page-header">
+    <h1>
+        Create questions
+    </h1>
+</div>
+
+<?php echo $this->getContent(); ?>
+
+<?php
+    echo $this->tag->form(
+        array(
+            "questions/create",
+            "autocomplete" => "off",
+            "class" => "form-horizontal"
+        )
+    );
+?>
+
+<div class="form-group">
+    <label for="fieldQuestion" class="col-sm-2 control-label">Question</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textArea(array("question", "cols" => 30, "rows" => 4, "class" => "form-control", "id" => "fieldQuestion")) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldTypeid" class="col-sm-2 control-label">TypeId</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(array("typeId", "type" => "number", "class" => "form-control", "id" => "fieldTypeid")) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldDeleted" class="col-sm-2 control-label">Deleted</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(array("deleted", "type" => "number", "class" => "form-control", "id" => "fieldDeleted")) ?>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <?php echo $this->tag->submitButton(array("Save", "class" => "btn btn-default")) ?>
+    </div>
+</div>
+
+<?php echo $this->tag->endForm(); ?>

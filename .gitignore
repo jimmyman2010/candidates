@@ -1,2 +1,6 @@
 /cache/
 /config/development/
+/.idea/
+/admin/temp/
+/admin/bower_components/
+/public/temp/
