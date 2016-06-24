@@ -23,6 +23,7 @@ class Module implements ModuleDefinitionInterface
         $loader->registerNamespaces(array(
             'Candidates\Backoffice\Controllers' => __DIR__ . '/controllers/',
             'Candidates\Backoffice\Models' => __DIR__ . '/models/',
+            'Candidates\Common\Models' => __DIR__ . '/../common/models/',
         ));
 
         $loader->register();

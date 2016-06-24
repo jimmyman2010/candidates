@@ -1,5 +1,5 @@
 <?php
-namespace Candidates\Common\Model;
+namespace Candidates\Common\Models;
 
 use Phalcon\Mvc\Model;
 

@@ -1,0 +1,109 @@
+<?php
+/**
+ * @var \Phalcon\Mvc\View\Engine\Php $this
+ */
+?>
+
+<div class="page-header">
+    <h1>
+        Search users
+    </h1>
+    <p>
+        <?php echo $this->tag->linkTo(array("users/new", "Create users")) ?>
+    </p>
+</div>
+
+<?php
+    echo $this->tag->form(
+        array(
+            "users/index",
+            "autocomplete" => "off",
+            "class" => "form-horizontal"
+        )
+    );
+?>
+
+<div class="form-group">
+    <label for="fieldUsername" class="col-sm-2 control-label">Username</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(array("username", "size" => 30, "class" => "form-control", "id" => "fieldUsername")) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldEmail" class="col-sm-2 control-label">Email</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(array("email", "size" => 30, "class" => "form-control", "id" => "fieldEmail")) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <?php echo $this->tag->submitButton(array("Search", "class" => "btn btn-default")) ?>
+    </div>
+</div>
+
+<?php echo $this->tag->endForm(); ?>
+
+
+<?php echo $this->getContent() ?>
+
+
+<div class="row">
+    <?php if(count($page->items) > 0): ?>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>ProfileId</th>
+            <th>Banned</th>
+            <th>Suspended</th>
+            <th>Deleted</th>
+
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($page->items as $user): ?>
+            <tr>
+                <td><?php echo $user->id ?></td>
+                <td><?php echo $user->username ?></td>
+                <td><?php echo $user->email ?></td>
+                <td><?php echo $user->password ?></td>
+                <td><?php echo $user->profileId ?></td>
+                <td><?php echo $user->banned ?></td>
+                <td><?php echo $user->suspended ?></td>
+                <td><?php echo $user->deleted ?></td>
+
+                <td><?php echo $this->tag->linkTo(array("users/edit/" . $user->id, "Edit")); ?></td>
+                <td><?php echo $this->tag->linkTo(array("users/delete/" . $user->id, "Delete")); ?></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+    <?php endif; ?>
+</div>
+
+<div class="row">
+    <?php if(count($page->items) > 0): ?>
+    <div class="col-sm-1">
+        <p class="pagination" style="line-height: 1.42857;padding: 6px 12px;">
+            <?php echo $page->current, "/", $page->total_pages ?>
+        </p>
+    </div>
+    <div class="col-sm-11">
+        <nav>
+            <ul class="pagination">
+                <li><?php echo $this->tag->linkTo("users/index", "First") ?></li>
+                <li><?php echo $this->tag->linkTo("users/index?page=" . $page->before, "Previous") ?></li>
+                <li><?php echo $this->tag->linkTo("users/index?page=" . $page->next, "Next") ?></li>
+                <li><?php echo $this->tag->linkTo("users/index?page=" . $page->last, "Last") ?></li>
+            </ul>
+        </nav>
+    </div>
+    <?php endif; ?>
+</div>

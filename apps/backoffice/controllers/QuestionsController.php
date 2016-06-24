@@ -3,7 +3,7 @@ namespace Candidates\Backoffice\Controllers;
 
 use Phalcon\Mvc\Model\Criteria;
 use Phalcon\Paginator\Adapter\Model as Paginator;
-use Candidates\Common\Model\Questions;
+use Candidates\Common\Models\Questions;
 
 
 class QuestionsController extends ControllerBase
@@ -23,7 +23,7 @@ class QuestionsController extends ControllerBase
     {
         $numberPage = 1;
         if ($this->request->isPost()) {
-            $query = Criteria::fromInput($this->di, 'Questions', $_POST);
+            $query = Criteria::fromInput($this->di, 'Candidates\Common\Models\Questions', $_POST);
             $this->persistent->parameters = $query->getParams();
         } else {
             $numberPage = $this->request->getQuery("page", "int");
