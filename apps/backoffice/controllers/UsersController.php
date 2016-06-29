@@ -13,6 +13,7 @@ class UsersController extends ControllerBase
      */
     public function indexAction()
     {
+        $this->tag->prependTitle('Users');
         $numberPage = 1;
 
         if ($this->request->isPost()) {
@@ -32,47 +33,6 @@ class UsersController extends ControllerBase
         $users = Users::find($parameters);
         if (count($users) == 0) {
             $this->flash->notice("The search did not find any users");
-        }
-
-        $paginator = new Paginator(array(
-            'data' => $users,
-            'limit'=> 10,
-            'page' => $numberPage
-        ));
-
-        $this->view->page = $paginator->getPaginate();
-    }
-
-    /**
-     * Searches for users
-     */
-    public function searchAction()
-    {
-        $numberPage = 1;
-
-        if ($this->request->isPost()) {
-            $query = Criteria::fromInput($this->di, 'Candidates\Common\Models\Users', $_POST);
-            $this->persistent->parameters = $query->getParams();
-        } else {
-            $numberPage = $this->request->getQuery("page", "int");
-        }
-
-        $parameters = $this->persistent->parameters;
-        if (!is_array($parameters)) {
-            $parameters = array();
-        }
-        $parameters["order"] = "id";
-
-        $users = Users::find($parameters);
-        if (count($users) == 0) {
-            $this->flash->notice("The search did not find any users");
-
-            $this->dispatcher->forward(array(
-                "controller" => "users",
-                "action" => "index"
-            ));
-
-            return;
         }
 
         $paginator = new Paginator(array(
@@ -261,7 +221,7 @@ class UsersController extends ControllerBase
 
             $this->dispatcher->forward(array(
                 'controller' => "users",
-                'action' => 'search'
+                'action' => 'index'
             ));
 
             return;
