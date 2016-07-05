@@ -37,6 +37,14 @@ class Answers extends Model
     public $deleted;
 
     /**
+     * Initialize method for model.
+     */
+    public function initialize()
+    {
+        $this->belongsTo('questionId', 'Candidates\Common\Models\Questions', 'id', array('alias' => 'Questions'));
+    }
+
+    /**
      * Returns table name mapped in the model.
      *
      * @return string

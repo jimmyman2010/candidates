@@ -105,10 +105,7 @@ class UsersController extends ControllerBase
         $user->username = $this->request->getPost("username");
         $user->email = $this->request->getPost("email", "email");
         $user->password = $this->request->getPost("password");
-        $user->profileId = $this->request->getPost("profileId");
-        $user->banned = $this->request->getPost("banned");
-        $user->suspended = $this->request->getPost("suspended");
-        $user->deleted = $this->request->getPost("deleted");
+        $user->profileId = 1;
         
 
         if (!$user->save()) {
@@ -124,12 +121,13 @@ class UsersController extends ControllerBase
             return;
         }
 
+//        $this->dispatcher->forward(array(
+//            'controller' => "users",
+//            'action' => 'index'
+//        ));
+        $this->response->redirect('users/index');
         $this->flash->success("user was created successfully");
-
-        $this->dispatcher->forward(array(
-            'controller' => "users",
-            'action' => 'index'
-        ));
+        $this->view->disable();
     }
 
     /**

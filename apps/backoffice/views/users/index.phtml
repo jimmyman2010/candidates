@@ -46,42 +46,38 @@
 
 
 <div class="row">
-    <?php if(count($page->items) > 0): ?>
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Password</th>
-            <th>ProfileId</th>
-            <th>Banned</th>
-            <th>Suspended</th>
-            <th>Deleted</th>
-
-            <th></th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($page->items as $user): ?>
+    <div class="col-sm-12">
+        <?php if(count($page->items) > 0): ?>
+        <table class="table table-bordered">
+            <thead>
             <tr>
-                <td><?php echo $user->id ?></td>
-                <td><?php echo $user->username ?></td>
-                <td><?php echo $user->email ?></td>
-                <td><?php echo $user->password ?></td>
-                <td><?php echo $user->profileId ?></td>
-                <td><?php echo $user->banned ?></td>
-                <td><?php echo $user->suspended ?></td>
-                <td><?php echo $user->deleted ?></td>
+                <th>Id</th>
+                <th>Fullname</th>
+                <th>Username</th>
+                <th>Banned</th>
+                <th>Suspended</th>
 
-                <td><?php echo $this->tag->linkTo(array("users/edit/" . $user->id, "Edit")); ?></td>
-                <td><?php echo $this->tag->linkTo(array("users/delete/" . $user->id, "Delete")); ?></td>
+                <th></th>
+                <th></th>
             </tr>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
-    <?php endif; ?>
+            </thead>
+            <tbody>
+            <?php foreach ($page->items as $user): ?>
+                <tr>
+                    <td><?php echo $user->id ?></td>
+                    <td><?php echo $user->profiles->firstName . ' ' . $user->profiles->lastName ?></td>
+                    <td><?php echo $user->username ?></td>
+                    <td><i class="fa fa-<?= $user->banned === 1 ? 'check' : 'times' ?>"></i></td>
+                    <td><i class="fa fa-<?= $user->suspended === 1 ? 'check' : 'times' ?>"></i></td>
+
+                    <td><?php echo $this->tag->linkTo(array("users/edit/" . $user->id, "Edit", 'class'=>'label label-primary')); ?></td>
+                    <td><?php echo $this->tag->linkTo(array("users/delete/" . $user->id, "Delete", 'class'=>'label label-danger')); ?></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+        <?php endif; ?>
+    </div>
 </div>
 
 <div class="row">

@@ -35,6 +35,12 @@ class Users extends Model
      *
      * @var integer
      */
+    public $groupId;
+
+    /**
+     *
+     * @var integer
+     */
     public $profileId;
 
     /**
@@ -48,6 +54,12 @@ class Users extends Model
      * @var integer
      */
     public $suspended;
+
+    /**
+     *
+     * @var integer
+     */
+    public $createdDate;
 
     /**
      *
@@ -76,6 +88,15 @@ class Users extends Model
         }
 
         return true;
+    }
+
+    /**
+     * Initialize method for model.
+     */
+    public function initialize()
+    {
+        $this->belongsTo('groupId', 'Candidates\Common\Models\Groups', 'id', array('alias' => 'Groups'));
+        $this->belongsTo('profileId', 'Candidates\Common\Models\Profiles', 'id', array('alias' => 'Profiles'));
     }
 
     /**

@@ -31,6 +31,15 @@ class Questions extends Model
     public $deleted;
 
     /**
+     * Initialize method for model.
+     */
+    public function initialize()
+    {
+        $this->hasMany('id', 'Candidates\Common\Models\Answers', 'questionId', array('alias' => 'Answers'));
+        $this->belongsTo('typeId', 'Candidates\Common\Models\Types', 'id', array('alias' => 'Types'));
+    }
+
+    /**
      * Returns table name mapped in the model.
      *
      * @return string

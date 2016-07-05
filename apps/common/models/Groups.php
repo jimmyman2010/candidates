@@ -3,7 +3,7 @@ namespace Candidates\Common\Models;
 
 use Phalcon\Mvc\Model;
 
-class Profiles extends Model
+class Groups extends Model
 {
 
     /**
@@ -16,25 +16,7 @@ class Profiles extends Model
      *
      * @var string
      */
-    public $firstName;
-
-    /**
-     *
-     * @var string
-     */
-    public $lastName;
-
-    /**
-     *
-     * @var string
-     */
-    public $phone;
-
-    /**
-     *
-     * @var string
-     */
-    public $address;
+    public $name;
 
     /**
      *
@@ -47,7 +29,7 @@ class Profiles extends Model
      */
     public function initialize()
     {
-        $this->hasMany('id', 'Candidates\Common\Models\Users', 'profileId', array('alias' => 'Users'));
+        $this->hasMany('id', 'Candidates\Common\Models\Users', 'groupId', array('alias' => 'Users'));
     }
 
     /**
@@ -57,14 +39,14 @@ class Profiles extends Model
      */
     public function getSource()
     {
-        return 'profiles';
+        return 'groups';
     }
 
     /**
      * Allows to query a set of records that match the specified conditions
      *
      * @param mixed $parameters
-     * @return Profiles[]
+     * @return Groups[]
      */
     public static function find($parameters = null)
     {
@@ -75,7 +57,7 @@ class Profiles extends Model
      * Allows to query the first record that match the specified conditions
      *
      * @param mixed $parameters
-     * @return Profiles
+     * @return Groups
      */
     public static function findFirst($parameters = null)
     {

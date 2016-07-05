@@ -31,6 +31,14 @@ class Types extends Model
     public $deleted;
 
     /**
+     * Initialize method for model.
+     */
+    public function initialize()
+    {
+        $this->hasMany('id', 'Candidates\Common\Models\Questions', 'typeId', array('alias' => 'Questions'));
+    }
+
+    /**
      * Returns table name mapped in the model.
      *
      * @return string

@@ -24,6 +24,7 @@ class Module implements ModuleDefinitionInterface
             'Candidates\Backoffice\Controllers' => __DIR__ . '/controllers/',
             'Candidates\Backoffice\Models' => __DIR__ . '/models/',
             'Candidates\Common\Models' => __DIR__ . '/../common/models/',
+            'Candidates\Backoffice\Forms' => __DIR__ . '/forms/',
         ));
 
         $loader->register();
